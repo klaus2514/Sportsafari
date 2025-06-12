@@ -1,0 +1,206 @@
+/* Base styling for the form container */
+.owner-form-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  /* Title styling */
+  .owner-form-container h1 {
+    text-align: center;
+    color: #007BFF;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  /* Form element group styling */
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  /* Label for form inputs */
+  .form-group label {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  /* Styling form inputs, selects, and text areas */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: black;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Styling for text area */
+  .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  /* Error messages */
+  .error {
+    color: #f44336;
+    font-size: 0.875rem;
+    margin-top: 5px;
+  }
+  
+  /* Time slot input area */
+  .time-slot {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .time-slot input,
+  .time-slot select {
+    width: calc(50% - 10px);
+  }
+  
+  .time-slot button {
+    background-color: #ff5c5c;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .time-slot button:hover {
+    background-color: #f44336;
+  }
+  
+  /* Add time slot button */
+  button[type="button"]:not(.remove-btn) {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  button[type="button"]:not(.remove-btn):hover {
+    background-color: #45a049;
+  }
+  
+  /* Submit button styling */
+  button[type="submit"] {
+    width: 100%;
+    background-color: #007BFF;
+    color: white;
+    padding: 12px;
+    font-size: 1.125rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Disabled state for submit button */
+  button[type="submit"]:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  /* Image preview styling */
+  img {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Amenities options layout */
+  .amenities-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .amenities-options label {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .amenities-options input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  /* Responsiveness for mobile devices */
+  @media (max-width: 768px) {
+    .owner-form-container {
+      padding: 20px;
+    }
+  
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-size: 0.95rem;
+    }
+  
+    button[type="button"],
+    button[type="submit"] {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  
+    .time-slot input,
+    .time-slot select {
+      width: 100%;
+    }
+  
+    .owner-form-container h1 {
+      font-size: 2rem;
+    }
+  }
+  
+  /* Mobile view adjustments */
+  @media (max-width: 480px) {
+    .owner-form-container {
+      padding: 15px;
+    }
+  
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-size: 0.875rem;
+    }
+  
+    button[type="button"],
+    button[type="submit"] {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  
+    .time-slot input,
+    .time-slot select {
+      width: 100%;
+    }
+  }
+  

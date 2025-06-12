@@ -1,0 +1,40 @@
+/* Login.css */
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+  }
+  
+  .login-container h2 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  .login-container button {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .login-container button:hover {
+    background: #ff6600;
+  }
+  
+  /* Mobile */
+  @media (max-width: 480px) {
+    .login-container {
+      width: 90%;
+    }
+  }
+  

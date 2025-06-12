@@ -1,0 +1,152 @@
+/* Reset and Base Styles */
+.home-root {
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f2f4ff;
+}
+
+/* Full-screen Hero Banner with Top-Left Text */
+.hero-banner {
+  width: 100%;
+  height: 100vh;
+  background: 
+    linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 50%),
+    url("https://cdn.pixabay.com/photo/2018/06/12/20/17/soccer-3471402_1280.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.banner-heading {
+  position: absolute;
+  top: 80px;
+  left: 60px;
+  font-family: "Playpen Sans", cursive;
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+  margin: 0;
+  text-align: left;
+}
+
+/* Sports Cards Section */
+.sports-container {
+  width: 100%;
+  padding: 40px 20px;
+  background-color: rgb(109, 143, 143);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 30px;
+  padding: 20px 0;
+  scrollbar-width: none;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Sport Cards */
+.sport-card {
+  flex: 0 0 300px;
+  height: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sport-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.sport-image {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+
+.sport-label {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .banner-heading {
+    font-size: 4rem;
+    left: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    height: 80vh;
+  }
+  
+  .banner-heading {
+    font-size: 3rem;
+    top: 60px;
+    left: 30px;
+  }
+  
+  .sport-card {
+    flex: 0 0 250px;
+    height: 350px;
+  }
+  
+  .sport-image {
+    height: 270px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-banner {
+    height: 70vh;
+  }
+  
+  .banner-heading {
+    font-size: 2.2rem;
+    top: 40px;
+    left: 20px;
+    line-height: 1.1;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .sport-card {
+    flex: 0 0 220px;
+    height: 300px;
+  }
+  
+  .sport-image {
+    height: 220px;
+  }
+  
+  .sport-label {
+    font-size: 1.2rem;
+    height: 60px;
+  }
+}

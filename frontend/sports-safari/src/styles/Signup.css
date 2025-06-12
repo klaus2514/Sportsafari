@@ -1,0 +1,44 @@
+/* Signup.css */
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+  }
+  
+  form input, form select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  form button {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  form button:hover {
+    background: #ff6600;
+  }
+  
+  /* Mobile */
+  @media (max-width: 480px) {
+    form {
+      width: 90%;
+    }
+  }
+  

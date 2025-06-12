@@ -1,0 +1,272 @@
+/* BookingConfirmation.css */
+
+/* Base Styles */
+.confirmation-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ticket Styling */
+.confirmation-container::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 15px,
+    #ddd 15px,
+    #ddd 30px
+  );
+}
+
+.confirmation-container::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 15px,
+    #ddd 15px,
+    #ddd 30px
+  );
+}
+
+/* Header Styles */
+.confirmation-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.confirmation-header h1 {
+  color: #2e7d32;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.confirmation-icon {
+  font-size: 4rem;
+  color: #2e7d32;
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  border: 3px solid #2e7d32;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+/* Booking Details */
+.booking-details {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0e0;
+}
+
+.booking-details h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  border-bottom: 2px dashed #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #eee;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.detail-value {
+  font-weight: 500;
+  color: #222;
+}
+
+/* Action Buttons */
+.confirmation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.confirmation-actions button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  text-align: center;
+}
+
+.print-btn {
+  background-color: #1565c0;
+  color: white;
+}
+
+.print-btn:hover {
+  background-color: #0d47a1;
+}
+
+.home-btn {
+  background-color: #424242;
+  color: white;
+}
+
+.home-btn:hover {
+  background-color: #212121;
+}
+
+.new-booking-btn {
+  background-color: #2e7d32;
+  color: white;
+}
+
+.new-booking-btn:hover {
+  background-color: #1b5e20;
+}
+
+/* Error and Loading States */
+.error-container, .no-data {
+  text-align: center;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.error-container h2, .no-data h2 {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+}
+
+.error-container button, .no-data button {
+  padding: 0.8rem 1.5rem;
+  margin-top: 1rem;
+  background-color: #1565c0;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .confirmation-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .confirmation-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .confirmation-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 3rem;
+  }
+
+  .booking-details {
+    padding: 1rem;
+  }
+
+  .confirmation-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .confirmation-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .confirmation-container {
+    padding: 1rem;
+  }
+
+  .confirmation-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .detail-label, .detail-value {
+    width: 100%;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .confirmation-container, .confirmation-container * {
+    visibility: visible;
+  }
+  .confirmation-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    margin: 0;
+    padding: 1cm;
+  background: white;
+  border: none;
+  }
+  .confirmation-actions {
+    display: none;
+  }
+}

@@ -1,0 +1,113 @@
+/* Base Footer Styles */
+.footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 2rem 0 0;
+    font-size: 0.9rem;
+    margin-top: auto; /* Pushes footer to bottom */
+  }
+  
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .footer-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-section h3,
+  .footer-section h4 {
+    color: #f8f9fa;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .footer-section p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-section li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-section a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-section a:hover {
+    color: #f8f9fa;
+  }
+  
+  /* Contact Info Styles */
+  .contact-info li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .social-links a {
+    color: #ecf0f1;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    transform: translateY(-3px);
+  }
+  
+  /* Footer Bottom */
+  .footer-bottom {
+    background-color: #1a252f;
+    padding: 1rem 0;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .footer-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .footer-section {
+      text-align: center;
+    }
+    
+    .social-links {
+      justify-content: center;
+    }
+  }

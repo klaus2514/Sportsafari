@@ -1,0 +1,47 @@
+/* BeforeLoginHome.css */
+.before-login-container {
+    text-align: center;
+    padding: 50px 20px;
+    background: url("../assets/sports-bg.jpg") no-repeat center center/cover;
+    color: white;
+  }
+  
+  .hero h2 {
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .signup-btn, .login-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: #ff4500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .signup-btn:hover, .login-btn:hover {
+    background: #ff6600;
+  }
+  
+  /* Mobile */
+  @media (max-width: 768px) {
+    .hero h2 {
+      font-size: 30px;
+    }
+  
+    .signup-btn, .login-btn {
+      padding: 10px 20px;
+    }
+  }
+  
