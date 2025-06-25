@@ -11,7 +11,7 @@ const chatbotRoutes = require("./routes/chatbotRoutes"); // New chatbot routes
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 'https://sportsafari-sjow.vercel.app';
+const PORT = process.env.PORT || 'https://sportsafari-fub57lqbp-testung.vercel.app';
 
 // Middleware
 
@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 'https://sportsafari-sjow.vercel.app';
 
 // With this:
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://sportsafari-sjow.vercel.app'], // Your frontend origin
+  origin: ['http://localhost:5173', 'https://sportsafari-fub57lqbp-testung.vercel.app'], // Your frontend origin
   credentials: true
 }));
 app.use(express.json());
