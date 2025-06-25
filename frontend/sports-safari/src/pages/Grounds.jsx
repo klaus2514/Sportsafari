@@ -19,7 +19,7 @@ const Grounds = () => {
         setError(null);
         
         const API_BASE = process.env.NODE_ENV === 'development' 
-          ? 'http://localhost:5000/api' 
+          ? 'https://sportsafari-2.onrender.com/api' 
           : '/api';
 
         const response = await axios.get(`${API_BASE}/grounds`, {
