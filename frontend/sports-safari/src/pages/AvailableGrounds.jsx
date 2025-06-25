@@ -14,7 +14,7 @@ const AvailableGrounds = () => {
     try {
       setLoading(true);
       setError('');
-      const res = await axios.post('http://localhost:5000/api/grounds/availability', {
+      const res = await axios.post('https://sportsafari-2.onrender.com/api/grounds/availability', {
         sportType,
         date,
         timeSlot
