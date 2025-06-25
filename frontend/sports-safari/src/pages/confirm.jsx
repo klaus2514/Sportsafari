@@ -12,7 +12,7 @@ const Confirm = ({ user }) => {
 
     try {
       console.log('Fetching bookings...');
-      const { data } = await axios.get('http://localhost:5000/api/bookings/my-bookings', {
+      const { data } = await axios.get('https://sportsafari-2.onrender.com/api/bookings/my-bookings', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
