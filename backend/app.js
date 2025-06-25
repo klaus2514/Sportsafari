@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 5000;
 
 // With this:
 app.use(cors({
-  origin: 'http://localhost:5173', // Your frontend origin
+  origin: ['http://localhost:5173', 'https://sportsafari-sjow.vercel.app'], // Your frontend origin
   credentials: true
 }));
 app.use(express.json());
