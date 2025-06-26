@@ -417,7 +417,7 @@ router.post(
 );
 
 // Get Grounds by Sport Type
-router.get("/", async (req, res) => {
+router.get("/Grounds", async (req, res) => {
   try {
     const { sportType } = req.query;
 
