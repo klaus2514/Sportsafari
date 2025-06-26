@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('https://sportsafari-2.onrender.com/api/auth', {
+      const res = await axios.post('https://sportsafari-2.onrender.com/api/auth/login', {
         email,
         password
       });
