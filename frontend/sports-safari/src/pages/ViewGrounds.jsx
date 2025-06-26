@@ -90,13 +90,13 @@ const ViewGrounds = () => {
                 </div>
                 <div className="actions">
                   <button
-                    onClick={() => navigate(`/owner/grounds/${ground._id}/edit`)}
+                    onClick={() => navigate(`/owner/grounds/${ground._id}`)}
                     className="edit-btn"
                   >
                     Edit
                   </button>
                   <button
-                    onClick={() => navigate(`/owner/grounds/${ground._id}/slots`)}
+                    onClick={() => navigate(`/owner/grounds/${ground._id}`)}
                     className="slots-btn"
                   >
                     Manage Slots
