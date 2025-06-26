@@ -33,7 +33,7 @@ const ViewGrounds = () => {
   const deleteGround = async (id) => {
     if (window.confirm('Are you sure you want to delete this ground?')) {
       try {
-        await api.delete(`/api/grounds/${id}/delete`);
+        await api.delete(`/api/grounds/${id}`);
         setGrounds(grounds.filter(ground => ground._id !== id));
       } catch (error) {
         console.error('Error deleting ground:', error);
