@@ -19,7 +19,8 @@ app.use(cors({
   origin: [
     'http://localhost:5173',
     'https://sportsafari-fub57lqbp-testung.vercel.app',
-    'https://sportsafari-sjow-d40chsbj5-testung.vercel.app'
+    'https://sportsafari-sjow-d40chsbj5-testung.vercel.app',
+    'https://sportsafari-sjow-dajnso973-testung.vercel.app'
   ],
   credentials: true
 }));
