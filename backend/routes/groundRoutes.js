@@ -306,7 +306,7 @@ router.get("/:groundId", async (req, res) => {
 });
 
 // Get Grounds by Sport Type
-router.get("/grounds", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const { sportType } = req.query;
 
