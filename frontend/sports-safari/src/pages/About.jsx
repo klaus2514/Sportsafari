@@ -51,22 +51,11 @@ const About = () => {
 
       {/* Team Section */}
       <section className="team-section">
-        <h2>The Developers</h2>
-        <div className="team-members">
-          <div className="team-card">
-            <img src="/talha.jpg" alt="Developer" />
-            <h3>Abutalaha</h3>
-            <p>Frontend Developer</p>
-          </div>
+        <h2>The Developer</h2>
           <div className="team-card">
             <img src="/manjeet.png" alt="Developer" />
             <h3>Manjeet Sharan</h3>
-            <p>Backend Developer</p>
-          </div>
-          <div className="team-card">
-            <img src="/ubaa.jpg" alt="Developer" />
-            <h3>Vibhanshu Kumar Shubham</h3>
-            <p>DevOps Engineer</p>
+            <p>Full Stack Developer</p>
           </div>
         </div>
       </section>
