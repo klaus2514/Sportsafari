@@ -21,7 +21,7 @@ const Grounds = () => {
         const API_BASE = 'https://sportsafari-2.onrender.com/api';
 
 
-        const response = await axios.get(`${API_BASE}/grounds`, {
+        const response = await axios.get(`${API_BASE}/Grounds`, {
           params: { sportType: sport.toLowerCase() },
           headers: {
             'Content-Type': 'application/json',
