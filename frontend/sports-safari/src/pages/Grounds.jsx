@@ -18,10 +18,9 @@ const Grounds = () => {
         setLoading(true);
         setError(null);
         
-        const API_BASE = 'https://sportsafari-2.onrender.com/api';
 
 
-        const response = await axios.get(`${API_BASE}/grounds`, {
+        const response = await axios.get(`https://sportsafari-2.onrender.com/api/grounds`, {
           params: { sportType: sport.toLowerCase() },
           headers: {
             'Content-Type': 'application/json',
