@@ -20,9 +20,7 @@ const BookingPage = () => {
         setError(null);
 
         const token = localStorage.getItem('token');
-        const API_BASE = process.env.NODE_ENV === 'development' 
-          ? 'https://sportsafari-2.onrender.com/api' 
-          : '/api';
+        const API_BASE = 'https://sportsafari-2.onrender.com/api';
         
         const response = await axios.get(`${API_BASE}/grounds/${groundId}`, {
           headers: {
