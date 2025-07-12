@@ -89,25 +89,26 @@ const ViewGrounds = () => {
                   </div>
                 </div>
                 <div className="actions">
-                  <button
-                    onClick={() => navigate(`/owner/grounds/${ground._id}`)}
-                    className="edit-btn"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => navigate(`/owner/grounds/${ground._id}`)}
-                    className="slots-btn"
-                  >
-                    Manage Slots
-                  </button>
-                  <button
-                    onClick={() => deleteGround(ground._id)}
-                    className="delete-btn"
-                  >
-                    Delete
-                  </button>
-                </div>
+           <button
+             onClick={() => navigate(`/owner/grounds/${ground._id}/edit`)}
+             className="edit-btn"
+          >
+          Edit
+         </button>
+         <button
+          onClick={() => navigate(`/owner/grounds/${ground._id}/slots`)}
+         className="slots-btn"
+          >
+        Manage Slots
+       </button>
+     <button
+       onClick={() => deleteGround(ground._id)}
+       className="delete-btn"
+     >
+    Delete
+  </button>
+</div>
+
               </div>
             </div>
           ))}
