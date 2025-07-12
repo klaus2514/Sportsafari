@@ -12,9 +12,7 @@ const OwnerBookings = () => {
 
 
   // Use absolute URL in development to avoid routing issues
-  const API_BASE = process.env.NODE_ENV === 'development' 
-    ? 'https://sportsafari-2.onrender.com' 
-    : '';
+  const API_BASE = 'https://sportsafari-2.onrender.com';
 
   const fetchBookings = async () => {
     try {
