@@ -57,7 +57,6 @@ const About = () => {
             <h3>Manjeet Sharan</h3>
             <p>Full Stack Developer</p>
           </div>
-        </div>
       </section>
     </div>
   );
