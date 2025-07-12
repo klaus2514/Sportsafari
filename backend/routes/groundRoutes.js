@@ -305,6 +305,65 @@ router.get("/:groundId", async (req, res) => {
   }
 });
 
+// Get Grounds by Sport Type
+router.get("/grounds", async (req, res) => {
+  try {
+    const { sportType } = req.query;
+
+    // Validate input
+    if (!sportType) {
+      return res.status(400).json({ 
+        success: false,
+        message: "Sport type is required" 
+      });
+    }
+
+    const validSports = ["cricket", "football", "tennis", "badminton", "basketball","volleyball"];
+    if (!validSports.includes(sportType.toLowerCase())) {
+      return res.status(400).json({ 
+        success: false,
+        message: "Invalid sport type" 
+      });
+    }
+
+    // Find available grounds
+    const grounds = await Ground.find({ 
+      sportType: sportType.toLowerCase(),
+      "slots": {
+        $elemMatch: {
+          isBooked: false,
+          date: { $gte: new Date() }
+        }
+      }
+    })
+    .populate('owner', 'name')
+    .lean();
+
+    res.json({
+      success: true,
+      grounds: grounds.map(ground => ({
+        ...ground,
+        slots: ground.slots.filter(slot => 
+          !slot.isBooked && new Date(slot.date) >= new Date()
+        )
+      }))
+    });
+
+  } catch (err) {
+    console.error('Error fetching grounds:', {
+      error: err.message,
+      stack: err.stack,
+      query: req.query
+    });
+    
+    res.status(500).json({
+      success: false,
+      message: "Server error while fetching grounds",
+      error: process.env.NODE_ENV === 'development' ? err.message : null
+    });
+  }
+});
+
 // Update ground
 router.put(
   "/:groundId",
@@ -416,62 +475,6 @@ router.post(
   }
 );
 
-// Get Grounds by Sport Type
-router.get("/grounds", async (req, res) => {
-  try {
-    const { sportType } = req.query;
 
-    // Validate input
-    if (!sportType) {
-      return res.status(400).json({ 
-        success: false,
-        message: "Sport type is required" 
-      });
-    }
 
-    const validSports = ["cricket", "football", "tennis", "badminton", "basketball","volleyball"];
-    if (!validSports.includes(sportType.toLowerCase())) {
-      return res.status(400).json({ 
-        success: false,
-        message: "Invalid sport type" 
-      });
-    }
-
-    // Find available grounds
-    const grounds = await Ground.find({ 
-      sportType: sportType.toLowerCase(),
-      "slots": {
-        $elemMatch: {
-          isBooked: false,
-          date: { $gte: new Date() }
-        }
-      }
-    })
-    .populate('owner', 'name')
-    .lean();
-
-    res.json({
-      success: true,
-      grounds: grounds.map(ground => ({
-        ...ground,
-        slots: ground.slots.filter(slot => 
-          !slot.isBooked && new Date(slot.date) >= new Date()
-        )
-      }))
-    });
-
-  } catch (err) {
-    console.error('Error fetching grounds:', {
-      error: err.message,
-      stack: err.stack,
-      query: req.query
-    });
-    
-    res.status(500).json({
-      success: false,
-      message: "Server error while fetching grounds",
-      error: process.env.NODE_ENV === 'development' ? err.message : null
-    });
-  }
-});
 module.exports = router;
