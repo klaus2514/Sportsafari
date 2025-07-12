@@ -87,9 +87,7 @@ const BookingPage = () => {
     try {
       setLoading(true);
       
-      const API_BASE = process.env.NODE_ENV === 'development' 
-        ? 'http://localhost:5000/api' 
-        : '/api';
+      const API_BASE = 'https://sportsafari-2.onrender.com/api'
 
       console.log('Attempting to book:', {
         groundId: ground._id,
