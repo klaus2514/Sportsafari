@@ -220,17 +220,33 @@ router.get("/owner-bookings", authMiddleware, async (req, res) => {
       });
     }
 
-    // 1. Get all bookings for this owner's grounds
+    // Step 1: Find grounds owned by this owner
+    const ownerGrounds = await Ground.find({ owner: req.user.id }).select('_id name');
+    const groundIds = ownerGrounds.map(g => g._id);
+
+    if (groundIds.length === 0) {
+      return res.json({
+        success: true,
+        bookings: [],
+        message: "You have no grounds yet."
+      });
+    }
+
+    // Step 2: Fetch bookings for those grounds
     const bookings = await Booking.find({
-      // No ground filtering - assuming bookings already reference correct grounds
+      ground: { $in: groundIds },
+      status: { $ne: 'cancelled' }
     })
-    .populate('user', 'name email phone')  // Only get needed user fields
+    .populate('user', 'name email phone')
+    .populate('ground', 'name location') // Optional, if you want ground name
     .sort({ date: -1, timeSlot: 1 });
 
-    // 2. Format the response
+    // Step 3: Format response
     const response = bookings.map(booking => ({
       id: booking._id,
-      groundId: booking.ground,  // Already contains ground ID
+      groundId: booking.ground?._id,
+      groundName: booking.ground?.name,
+      location: booking.ground?.location,
       date: booking.date,
       timeSlot: booking.timeSlot,
       price: booking.price,
@@ -255,6 +271,7 @@ router.get("/owner-bookings", authMiddleware, async (req, res) => {
     });
   }
 });
+
 
 router.patch("/:id/status", authMiddleware, async (req, res) => {
   try {
