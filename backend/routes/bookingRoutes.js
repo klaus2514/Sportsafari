@@ -220,40 +220,35 @@ router.get("/owner-bookings", authMiddleware, async (req, res) => {
       });
     }
 
-    // Step 1: Find grounds owned by this owner
-    const ownerGrounds = await Ground.find({ owner: req.user.id }).select('_id name');
+    // 1. Get all grounds owned by this owner
+    const ownerGrounds = await Ground.find({ owner: req.user.id }).select("_id name");
+
     const groundIds = ownerGrounds.map(g => g._id);
+    const groundNames = {};
+    ownerGrounds.forEach(g => {
+      groundNames[g._id.toString()] = g.name;
+    });
 
-    if (groundIds.length === 0) {
-      return res.json({
-        success: true,
-        bookings: [],
-        message: "You have no grounds yet."
-      });
-    }
-
-    // Step 2: Fetch bookings for those grounds
+    // 2. Find bookings related to those grounds
     const bookings = await Booking.find({
-      ground: { $in: groundIds },
-      status: { $ne: 'cancelled' }
+      ground: { $in: groundIds }
     })
     .populate('user', 'name email phone')
-    .populate('ground', 'name location') // Optional, if you want ground name
     .sort({ date: -1, timeSlot: 1 });
 
-    // Step 3: Format response
+    // 3. Format response
     const response = bookings.map(booking => ({
       id: booking._id,
-      groundId: booking.ground?._id,
-      groundName: booking.ground?.name,
-      location: booking.ground?.location,
+      groundId: booking.ground,
+      groundName: groundNames[booking.ground.toString()] || 'Unknown Ground',
       date: booking.date,
       timeSlot: booking.timeSlot,
       price: booking.price,
       status: booking.status,
       paymentStatus: booking.paymentStatus,
-      userName: booking.user?.name,
-      userEmail: booking.user?.email,
+      userName: booking.user?.name || 'Unknown',
+      userEmail: booking.user?.email || '',
+      userPhone: booking.user?.phone || '',
       bookedAt: booking.createdAt
     }));
 
@@ -266,7 +261,7 @@ router.get("/owner-bookings", authMiddleware, async (req, res) => {
     console.error("Owner bookings error:", err);
     res.status(500).json({
       success: false,
-      message: "Failed to fetch bookings",
+      message: "Failed to fetch owner bookings",
       error: process.env.NODE_ENV === 'development' ? err.message : undefined
     });
   }
