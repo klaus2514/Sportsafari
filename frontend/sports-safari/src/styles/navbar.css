@@ -17,7 +17,9 @@ body {
   max-width: 100%;
 }
 
-
+.auth-section span{
+  color: black;
+}
 
 
 .navbar-container {
