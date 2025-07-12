@@ -52,11 +52,11 @@ const About = () => {
       {/* Team Section */}
       <section className="team-section">
         <h2>The Developer</h2>
-          <div className="team-card">
-            <img src="/manjeet.png" alt="Developer" />
-            <h3>Manjeet Sharan</h3>
-            <p>Full Stack Developer</p>
-          </div>
+        <div className="team-card">
+          <img src="/manjeet.png" alt="Developer" />
+          <h3>Manjeet Sharan</h3>
+          <p>Full Stack Developer</p>
+        </div>
       </section>
     </div>
   );
