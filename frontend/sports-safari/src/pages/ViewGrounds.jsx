@@ -9,6 +9,7 @@ const ViewGrounds = () => {
   const navigate = useNavigate();
   const [grounds, setGrounds] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchGrounds = async () => {
@@ -17,6 +18,7 @@ const ViewGrounds = () => {
         setGrounds(response.data.grounds || []);
       } catch (error) {
         console.error('Error fetching grounds:', error);
+        setError('Failed to load grounds. Please try again.');
         setGrounds([]);
       } finally {
         setLoading(false);
@@ -31,19 +33,23 @@ const ViewGrounds = () => {
   };
 
   const deleteGround = async (id) => {
-    if (window.confirm('Are you sure you want to delete this ground?')) {
-      try {
-        await api.delete(`/api/grounds/${id}`);
-        setGrounds(grounds.filter(ground => ground._id !== id));
-      } catch (error) {
-        console.error('Error deleting ground:', error);
-        alert('Failed to delete ground. Please try again.');
-      }
+    if (!window.confirm('Are you sure you want to delete this ground?')) return;
+    
+    try {
+      await api.delete(`/api/grounds/${id}`);
+      setGrounds(grounds.filter(ground => ground._id !== id));
+    } catch (error) {
+      console.error('Delete error:', error);
+      setError(error.response?.data?.message || 'Failed to delete ground');
     }
   };
 
   if (loading) {
     return <div className="loading-container">Loading grounds...</div>;
+  }
+
+  if (error) {
+    return <div className="error-container">{error}</div>;
   }
 
   return (
@@ -89,26 +95,19 @@ const ViewGrounds = () => {
                   </div>
                 </div>
                 <div className="actions">
-           <button
-             onClick={() => navigate(`/owner/grounds/${ground._id}/edit`)}
-             className="edit-btn"
-          >
-          Edit
-         </button>
-         <button
-          onClick={() => navigate(`/owner/grounds/${ground._id}/slots`)}
-         className="slots-btn"
-          >
-        Manage Slots
-       </button>
-     <button
-       onClick={() => deleteGround(ground._id)}
-       className="delete-btn"
-     >
-    Delete
-  </button>
-</div>
-
+                  <button
+                    onClick={() => navigate(`/owner/grounds/${ground._id}/slots`)}
+                    className="slots-btn"
+                  >
+                    Manage Slots
+                  </button>
+                  <button
+                    onClick={() => deleteGround(ground._id)}
+                    className="delete-btn"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           ))}
