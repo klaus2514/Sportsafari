@@ -475,6 +475,16 @@ router.post(
   }
 );
 
+// Get ground for editing
+router.get("/:groundId/edit", authMiddleware, checkOwnership, async (req, res) => {
+  res.json({ success: true, ground: req.ground });
+});
+
+// Get slots for management
+router.get("/:groundId/slots", authMiddleware, checkOwnership, async (req, res) => {
+  res.json({ success: true, slots: req.ground.slots });
+});
+
 
 
 module.exports = router;
