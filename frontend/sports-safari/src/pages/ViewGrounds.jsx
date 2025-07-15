@@ -1,31 +1,34 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
 import '../styles/owner-grounds.css';
 
 const ViewGrounds = () => {
   const { user } = useAuth();
-  const navigate = useNavigate();
   const [grounds, setGrounds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchGrounds = async () => {
+    const fetchOwnerGrounds = async () => {
       try {
-        const response = await api.get('/api/grounds/all');
+        // Fetch only grounds belonging to the logged-in owner
+        const response = await api.get(`/api/grounds/owner/${user.id}`);
         setGrounds(response.data.grounds || []);
       } catch (error) {
         console.error('Error fetching grounds:', error);
-        setError('Failed to load grounds. Please try again.');
+        setError('Failed to load your grounds. Please try again.');
         setGrounds([]);
       } finally {
         setLoading(false);
       }
     };
-    fetchGrounds();
-  }, []);
+
+    if (user?.id) {
+      fetchOwnerGrounds();
+    }
+  }, [user]);
 
   const handleImageError = (e) => {
     e.target.src = '/default-ground.jpg';
@@ -33,23 +36,20 @@ const ViewGrounds = () => {
   };
 
   const deleteGround = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this ground?')) return;
+    if (!window.confirm('Are you sure you want to permanently delete this ground?')) return;
     
     try {
       await api.delete(`/api/grounds/${id}`);
       setGrounds(grounds.filter(ground => ground._id !== id));
     } catch (error) {
       console.error('Delete error:', error);
-      setError(error.response?.data?.message || 'Failed to delete ground');
+      setError(error.response?.data?.message || 
+        'Failed to delete ground. You may not have permission.');
     }
   };
 
   if (loading) {
-    return <div className="loading-container">Loading grounds...</div>;
-  }
-
-  if (error) {
-    return <div className="error-container">{error}</div>;
+    return <div className="loading-container">Loading your grounds...</div>;
   }
 
   return (
@@ -61,10 +61,12 @@ const ViewGrounds = () => {
         </Link>
       </div>
 
+      {error && <div className="error-message">{error}</div>}
+
       {grounds.length === 0 ? (
         <div className="empty-state">
           <p>You haven't added any grounds yet.</p>
-          <Link to="/owner/add-ground" className="primary-btn">
+          <Link to="/add-ground" className="primary-btn">
             Add Your First Ground
           </Link>
         </div>
@@ -94,20 +96,12 @@ const ViewGrounds = () => {
                     </span>
                   </div>
                 </div>
-                <div className="actions">
-                  <button
-                    onClick={() => navigate(`/owner/grounds/${ground._id}/slots`)}
-                    className="slots-btn"
-                  >
-                    Manage Slots
-                  </button>
-                  <button
-                    onClick={() => deleteGround(ground._id)}
-                    className="delete-btn"
-                  >
-                    Delete
-                  </button>
-                </div>
+                <button
+                  onClick={() => deleteGround(ground._id)}
+                  className="delete-btn"
+                >
+                  Delete Ground
+                </button>
               </div>
             </div>
           ))}
