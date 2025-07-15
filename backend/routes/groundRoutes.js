@@ -485,6 +485,36 @@ router.get("/:groundId/slots", authMiddleware, checkOwnership, async (req, res) 
   res.json({ success: true, slots: req.ground.slots });
 });
 
+// Get grounds by owner ID
+router.get('/owner/:ownerId', authMiddleware, async (req, res) => {
+  try {
+    // Verify the requested owner matches the logged-in user
+    if (req.params.ownerId !== req.user.id) {
+      return res.status(403).json({
+        success: false,
+        message: "Unauthorized: You can only view your own grounds"
+      });
+    }
+
+    const grounds = await Ground.find({ owner: req.params.ownerId })
+      .populate("slots.bookedBy", "name email")
+      .lean();
+
+    res.json({
+      success: true,
+      grounds: grounds.map(ground => ({
+        ...ground,
+        bookedSlotsCount: ground.slots.filter(s => s.isBooked).length
+      }))
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Error fetching owner grounds",
+      error: err.message
+    });
+  }
+});
 
 
 module.exports = router;
